@@ -2,7 +2,6 @@ name: Generate Snake
 
 on:
   schedule:
-    # Runs every 6 hours
     - cron: "0 */6 * * *"
   workflow_dispatch:
 
@@ -11,24 +10,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the repository
-      - uses: actions/checkout@v3
+      # Step 1: Checkout the repository
+      - name: Checkout Code
+        uses: actions/checkout@v3
 
-      # Generate the snake animation
-      - uses: Platane/snk/svg-only@v3
-        id: generate-snake
+      # Step 2: Generate the Snake SVG
+      - name: Generate Snake SVG
+        uses: Platane/snk/svg-only@v3
         with:
           github_user_name: BiswajitSahoo-Programmer
           outputs: |
             dist/github-contribution-grid-snake.svg
 
-      # Commit and push the changes to the output branch
-      - name: Commit and Push Changes
+      # Step 3: Configure Git
+      - name: Configure Git
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      # Step 4: Commit Changes
+      - name: Commit SVG Changes
+        run: |
           git add dist/
           git commit -m "Generate snake animation" || echo "No changes to commit"
-          git push origin output
+
+      # Step 5: Push to Output Branch
+      - name: Push to Output Branch
+        run: git push origin HEAD:output --force
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
