@@ -1,4 +1,4 @@
-<h2 align="left">Hi 👋! My name is Biswajit Sahoo , a Passionate Full-Stack Developer specializing in Java, Spring Boot, React.js, and MySQL, building dynamic, scalable web applications., from India</h2>
+<h2 align="left">Hi 👋! My name is Biswajit Sahoo , a Passionate Full-Stack Developer specializing in Java, Spring Boot, React.js, and MySQL, building dynamic, scalable web applications.</h2>
 
 ###
 
